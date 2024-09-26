@@ -24,6 +24,14 @@
       }
     });
 
+    // Autostart the VM
+    function autostartVM() {
+      socket.send('connect');
+    }
+
+    // Initialize the VNC client and autostart the VM
+    vnc.init().then(autostartVM);
+
     // Handle WebSocket messages
     socket.onmessage = function(event) {
       vnc.handleMessage(event.data);
